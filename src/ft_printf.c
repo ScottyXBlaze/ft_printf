@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:41:49 by nyramana          #+#    #+#             */
-/*   Updated: 2026/02/10 12:26:50 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/02/10 17:04:53 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ int	handle_format(va_list args, char format)
 		return (int_putptr(va_arg(args, void *)));
 	else if (format == '%')
 		return (int_putchar('%'));
+	else if (format == '\n')
+		return (int_putstr("%\n"));
 	else
-		return (0);
+	{
+		int_putchar('%');
+		return (1);
+	}
 }
 
 int	ft_printf(const char *str, ...)
@@ -63,19 +68,28 @@ int	ft_printf(const char *str, ...)
 	va_list	args;
 	int		i;
 	int		len;
+	int		err;
 
 	va_start(args, str);
 	i = 0;
 	len = 0;
+	if(!str)
+		return (-1);
 	while (str[i])
 	{
 		if (str[i] == '%' && str[i + 1])
 		{
-			len += handle_format(args, str[i + 1]);
+			err =  handle_format(args, str[i + 1]);
+			if (err == -1)
+				return (-1);
+			len += err;
 			i++;
 		}
 		else
-			len += int_putchar(str[i]);
+		{
+			if ((len += int_putchar(str[i])) == -1)
+				return (-1);
+		}
 		i++;
 	}
 	va_end(args);
