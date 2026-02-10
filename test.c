@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:39:02 by nyramana          #+#    #+#             */
-/*   Updated: 2026/02/10 17:04:16 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/02/10 17:23:11 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(void)
 	int	err1;
 	int	err2;
 
-	len = printf("Hello, %s! This is a number: %d\n", "world", 42);
-	len2 = ft_printf("Hello, %s! This is a number: %d\n", "world", 42);
+	len = printf("Hello, %s! This is a number: %", "world", 42);
+	len2 = ft_printf("Hello, %s! This is a number: %", "world", 42);
 	printf("length Original: %d characters.\n", len);
 	printf("length ft_printf: %d characters.\n", len2);
 

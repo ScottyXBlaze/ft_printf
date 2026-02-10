@@ -31,7 +31,6 @@ $(LIBFT):
 $(NAME): $(OBJS)
 	@cp $(LIBFT) $@
 	@$(AR) $@ $(OBJS)
-	@echo "$(GREEN)✨ ft_printf compilé avec succès !$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
@@ -41,15 +40,12 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 clean:
 	@$(RM) $(OBJ_PATH)
 	@$(MAKE) -C $(LIBFT_PATH) clean
-	@echo "$(BLUE)🧹 Les fichiers objets ont été nettoyés.$(DEF_COLOR)"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) -C $(LIBFT_PATH) fclean
-	@echo "$(MAGENTA)🗑️  L'archive $(NAME) a été supprimée.$(DEF_COLOR)"
 
 re: fclean all
-	@echo "$(CYAN)🔄 Reconstruction terminée !$(DEF_COLOR)"
 
-# Pour éviter les confusions avec des fichiers réels
+
 .PHONY: all clean fclean re
