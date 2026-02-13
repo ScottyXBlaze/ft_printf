@@ -6,22 +6,21 @@
 /*   By: nyramana <nyramana@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:12:02 by nyramana          #+#    #+#             */
-/*   Updated: 2026/02/10 12:28:58 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:15:55 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	write_hex_unsigned(unsigned long n, char format)
+static int	int_puthex(unsigned long n, char format)
 {
 	char		buf[32];
 	const char	*digits;
 	int			i;
 	int			len;
 
-	if (format == 'x')
-		digits = "0123456789abcdef";
-	else
+	digits = "0123456789abcdef";
+	if (format == 'X')
 		digits = "0123456789ABCDEF";
 	i = 0;
 	if (n == 0)
@@ -33,22 +32,23 @@ static int	write_hex_unsigned(unsigned long n, char format)
 	}
 	len = i;
 	while (i-- > 0)
-		write(1, &buf[i], 1);
+		if (safe_write(1, &buf[i], 1) == -1)
+			return (-1);
 	return (len);
-}
-
-int	int_puthex(unsigned int n, char format)
-{
-	return (write_hex_unsigned(n, format));
 }
 
 int	int_putptr(void *ptr)
 {
 	int	len;
+	int	ret;
 
 	if (!ptr)
-		return (write(1, "(nil)", 5));
-	len = write(1, "0x", 2);
-	len += write_hex_unsigned((unsigned long)ptr, 'x');
-	return (len);
+		return (safe_write(1, "(nil)", 5));
+	len = safe_write(1, "0x", 2);
+	if (len == -1)
+		return (-1);
+	ret = write_hex_unsigned((unsigned long)ptr, 'x');
+	if (ret == -1)
+		return (-1);
+	return (len + ret);
 }

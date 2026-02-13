@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 11:36:17 by nyramana          #+#    #+#             */
-/*   Updated: 2026/02/10 11:42:26 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:19:15 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,16 @@ static int	int_len(long nbr)
 int	int_utoa(unsigned int n)
 {
 	int		len;
-	int	i;
-	char 	*str;
+	int		i;
+	int		ret;
+	char	*str;
 	long	nbr;
 
 	nbr = n;
 	len = int_len(nbr);
 	str = malloc((len + 1) * sizeof(char));
 	if (!str)
-		return (0);
+		return (-1);
 	str[0] = '0';
 	str[len] = 0;
 	i = len - 1;
@@ -52,7 +53,34 @@ int	int_utoa(unsigned int n)
 		nbr = nbr / 10;
 		i--;
 	}
-	write(1, str, len);
+	ret = safe_write(1, str, len);
 	free(str);
-	return (len);
+	return (ret);
+}
+
+int	int_putchar(char str)
+{
+	return (safe_write(1, &str, 1));
+}
+
+int	int_putstr(const char *str)
+{
+	if (!str)
+		str = "(null)";
+	return (safe_write(1, str, ft_strlen(str)));
+}
+
+int	int_putnbr(int n)
+{
+	char	*str;
+	int		len;
+	int		ret;
+
+	str = ft_itoa(n);
+	if (!str)
+		return (-1);
+	len = ft_strlen(str);
+	ret = safe_write(1, str, len);
+	free(str);
+	return (ret);
 }

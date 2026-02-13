@@ -9,6 +9,7 @@ INC_PATH = includes/
 SRC_FILES	=	ft_printf.c \
 				ft_utoa.c \
 				ft_puthex.c \
+				safe_write.c \
 
 
 SRC	= $(addprefix $(SRC_PATH), $(SRC_FILES))
@@ -34,7 +35,6 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -46,6 +46,5 @@ fclean: clean
 	@$(MAKE) -C $(LIBFT_PATH) fclean
 
 re: fclean all
-
 
 .PHONY: all clean fclean re
