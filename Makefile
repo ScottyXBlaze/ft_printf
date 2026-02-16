@@ -9,7 +9,7 @@ INC_PATH = includes/
 SRC_FILES	=	ft_printf.c \
 				ft_utoa.c \
 				ft_puthex.c \
-				safe_write.c \
+				ft_write.c \
 
 
 SRC	= $(addprefix $(SRC_PATH), $(SRC_FILES))

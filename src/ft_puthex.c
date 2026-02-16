@@ -6,13 +6,13 @@
 /*   By: nyramana <nyramana@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:12:02 by nyramana          #+#    #+#             */
-/*   Updated: 2026/02/13 14:15:55 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:32:48 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	int_puthex(unsigned long n, char format)
+int	int_puthex(unsigned long n, char format)
 {
 	char		buf[32];
 	const char	*digits;
@@ -47,7 +47,7 @@ int	int_putptr(void *ptr)
 	len = safe_write(1, "0x", 2);
 	if (len == -1)
 		return (-1);
-	ret = write_hex_unsigned((unsigned long)ptr, 'x');
+	ret = int_puthex((unsigned long)ptr, 'x');
 	if (ret == -1)
 		return (-1);
 	return (len + ret);
