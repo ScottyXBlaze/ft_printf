@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 int	ft_printf(const char *str, ...);
 int	handle_format(va_list args, char format);
