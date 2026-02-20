@@ -18,7 +18,7 @@ int	ft_printf(const char *str, ...);
 
 ## Instructions:
 **Compilation:**
-Simply type this command in the source directory to get a static function named `libftprintf.a`:
+Simply type this command in the source directory to get a static library named `libftprintf.a`:
 ```bash
 make
 ```
@@ -36,7 +36,7 @@ cc -Wall -Werror -Wextra libftprintf.a main.c -Iincludes -o program
 ```
 **Program example:**
 ```c
-#include <ft_printf.h>
+#include "ft_printf.h"
 
 int main(void)
 {
