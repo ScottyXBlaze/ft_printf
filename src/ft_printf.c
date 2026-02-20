@@ -52,7 +52,10 @@ int	ft_printf(const char *str, ...)
 	{
 		err = check_validity(args, str, &i);
 		if (err == -1)
+		{
+			va_end(args);
 			return (-1);
+		}
 		len += err;
 	}
 	va_end(args);

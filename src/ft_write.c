@@ -6,7 +6,7 @@
 /*   By: nyramana <nyramana@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:54:34 by nyramana          #+#    #+#             */
-/*   Updated: 2026/02/17 09:11:23 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/02/20 13:01:18 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ int	check_validity(va_list args, const char *str, int *i)
 		*i += 1;
 	}
 	if (err == -1)
-	{
-		va_end(args);
 		return (-1);
-	}
 	return (err);
 }
