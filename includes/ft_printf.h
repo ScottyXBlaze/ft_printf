@@ -6,15 +6,16 @@
 /*   By: nyramana <nyramana@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:44:23 by nyramana          #+#    #+#             */
-/*   Updated: 2026/02/13 14:31:38 by nyramana         ###   ########.fr       */
+/*   Updated: 2026/02/21 09:39:59 by nyramana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
 # include <stdarg.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 int		handle_format(va_list args, char format);
 int		ft_printf(const char *str, ...);
